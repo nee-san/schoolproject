@@ -1,0 +1,28 @@
+# Description: Pico editor clone with enhancements
+# URL:         https://www.nano-editor.org
+# Maintainer:  nee-san, nagakamira at gmail dot com
+# Depends on:  file ncurses
+
+name=nano
+version=4.0
+release=2
+source=("https://www.nano-editor.org/dist/v4/$name-$version.tar.xz")
+BOOTSTRAP=yes
+
+build() {
+	cd "$SRC"/$name-$version
+	./configure $BUILDFLAGS \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--enable-color \
+		--enable-nanorc \
+		--enable-multibuffer \
+		--enable-utf8 \
+		--disable-wrapping-as-root
+	make
+	make DESTDIR="$PKG" install
+
+	install -DTm644 doc/sample.nanorc "$PKG"/etc/nanorc
+
+	echo 'include /usr/share/nano/*.nanorc' >> "$PKG"/etc/nanorc
+}

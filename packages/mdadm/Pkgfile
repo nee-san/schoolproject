@@ -1,0 +1,26 @@
+# Description: A tool for managing/monitoring Linux md device arrays, also known as Software RAID
+# URL:         http://neil.brown.name/blog/mdadm
+# Maintainer:  nee-san, nagakamira at gmail dot com
+
+name=mdadm
+version=4.1
+release=2
+source=("https://www.kernel.org/pub/linux/utils/raid/$name/$name-$version.tar.gz")
+BOOTSTRAP=yes
+
+build() {
+	cd "$SRC"/$name-$version
+	patch -Np0 -i "$STUFF"/mdadm/werror.patch
+
+	mkdir -p "$PKG"/usr/bin
+
+	if [ "$CROSS" = "yes" ]; then
+		make HOSTCC="$HOSTCC" CC="$CC" CXFLAGS="$CFLAGS" STRIP='' CHECK_RUN_DIR=0 PREFIX=/usr BINDIR=/usr/bin UDEVDIR=/usr/lib/udev all
+		make HOSTCC="$HOSTCC" CC="$CC" CXFLAGS="$CFLAGS" STRIP='' CHECK_RUN_DIR=0 PREFIX=/usr BINDIR=/usr/bin UDEVDIR=/usr/lib/udev DESTDIR="$PKG" install
+	else
+		make CXFLAGS="$CFLAGS" PREFIX=/usr BINDIR=/usr/bin UDEVDIR=/usr/lib/udev all
+		make CXFLAGS="$CFLAGS" PREFIX=/usr BINDIR=/usr/bin UDEVDIR=/usr/lib/udev DESTDIR="$PKG" install
+	fi
+
+	install -D -m644 "$STUFF"/mdadm/mdadm.conf "$PKG"/etc/mdadm/mdadm.conf
+}

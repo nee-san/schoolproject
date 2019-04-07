@@ -1,0 +1,21 @@
+# Description: File type identification utility
+# URL:         https://www.darwinsys.com/file/
+# Maintainer:  nee-san, nagakamira at gmail dot com
+# Depends on:  zlib
+
+name=file
+version=5.36
+release=1
+source=("ftp://ftp.astron.com/pub/$name/$name-$version.tar.gz")
+BOOTSTRAP=yes
+
+build() {
+	cd "$SRC"/$name-$version
+	./configure $BUILDFLAGS \
+		--prefix=/usr \
+		--datadir=/usr/share/file \
+		--enable-fsect-man5 \
+		--disable-libseccomp
+	make
+	make DESTDIR="$PKG" install
+}

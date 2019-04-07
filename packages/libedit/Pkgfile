@@ -1,0 +1,21 @@
+# Description: Command line editor library providing generic line editing, history, and tokenization functions
+# URL:         http://thrysoee.dk/editline/
+# Maintainer:  nee-san, nagakamira at gmail dot com
+# Depends on:  ncurses
+
+name=libedit
+_ledate=20190324
+_pkgver=${_ledate}-3.1
+version=${_pkgver/-/_}
+release=4
+source=("http://thrysoee.dk/editline/$name-${_pkgver}.tar.gz")
+BOOTSTRAP=yes
+
+build() {
+	cd "$SRC"/$name-${_pkgver}
+	./configure $BUILDFLAGS \
+		--prefix=/usr \
+		--enable-widec
+	make
+	make DESTDIR="$PKG" install
+}

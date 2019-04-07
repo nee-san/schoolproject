@@ -1,0 +1,34 @@
+# Description: Vi Improved, a highly configurable, improved version of the vi text editor
+# URL:         https://www.vim.org/
+# Maintainer:  nee-san, nagakamira at gmail dot com
+# Depends on:  ncurses libelf
+
+name=vim-tiny
+version=8.1.1115
+release=1
+source=("https://github.com/vim/vim/archive/v$version.tar.gz")
+
+
+build() {
+	cd "$SRC"/vim-$version
+	./configure $BUILDFLAGS \
+		--prefix=/usr \
+		--localstatedir=/var/lib/vim \
+		--with-compiledby='januslinux' \
+		--with-features=tiny \
+		--with-tlib=ncurses \
+		--without-x \
+		--enable-gui=no \
+		--enable-multibyte \
+		--disable-acl \
+		--disable-desktop-database-update \
+		--disable-gpm \
+		--disable-gtktest \
+		--disable-icon-cache-update \
+		--disable-netbeans \
+		--disable-selinux
+	make
+	make DESTDIR="$PKG" install
+
+	ln -sf vim "$PKG"/usr/bin/vi
+}

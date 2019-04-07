@@ -1,0 +1,64 @@
+# Description: Miscellaneous system utilities for Linux
+# URL:         http://git.kernel.org/cgit/utils/util-linux/util-linux.git
+# Maintainer:  nee-san, nagakamira at gmail dot com
+# Depends on:  zlib readline libcap-ng
+
+name=util-linux
+version=2.33.1
+case $version in
+	*.*.*) _v=${version%.*};;
+	*.*) _v=$version;;
+esac
+release=6
+source=("https://www.kernel.org/pub/linux/utils/util-linux/v${_v}/$name-$version.tar.xz")
+BOOTSTRAP=yes
+
+build() {
+	cd "$SRC"/$name-$version
+	patch -Np1 -i "$STUFF"/util-linux/70c364b4db6530ada12f7103b5c5d8ceb777307f.patch
+
+	NOCONFIGURE=1 ./autogen.sh
+	ADJTIME_PATH=/var/lib/hwclock/adjtime \
+	./configure $BUILDFLAGS \
+		--prefix=/usr \
+		--libdir=/usr/lib \
+		--bindir=/usr/bin \
+		--sbindir=/usr/bin \
+		--localstatedir=/var \
+		--enable-fs-paths-default=/usr/bin \
+		--with-btrfs \
+		--with-readline \
+		--without-python \
+		--without-systemd \
+		--without-systemdsystemunitdir \
+		--enable-kill \
+		--enable-mesg \
+		--enable-partx \
+		--enable-raw \
+		--enable-sulogin \
+		--enable-wall \
+		--enable-write \
+		--disable-chfn-chsh \
+		--disable-login \
+		--disable-makeinstall-chown \
+		--disable-nologin \
+		--disable-rpath \
+		--disable-runuser \
+		--disable-setpriv \
+		--disable-su
+	make
+	make DESTDIR="$PKG" install
+
+	cd "$PKG"
+	mv usr/sbin/* usr/bin
+	rm -rf bin sbin usr/sbin
+
+	rm -rf usr/bin/ctrlaltdel
+
+	mkdir -p var/lib/hwclock
+
+	install -Dm0755 "$STUFF"/runit-svc/uuid "$PKG"/etc/service/uuid/run
+	install -Dm0755 "$STUFF"/runit-svc/uuid-log "$PKG"/etc/service/uuid/log/run
+
+	mkdir -p "$PKG"/var/log/uuid
+}
