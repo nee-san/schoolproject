@@ -18,7 +18,7 @@ build() {
 		--prefix=/usr \
 		--sysconfdir=/etc \
 		--localstatedir=/var \
-		--with-gallium-drivers=r300,r600,svga,swrast,radeonsi,nouveau  \
+		--with-gallium-drivers="i915,r600,nouveau,radeonsi,svga,swrast"  \
 		--with-platforms=x11,drm,wayland \
 		--with-vulkan-drivers=intel,radeon \
 		--enable-gles1 \
@@ -29,7 +29,7 @@ build() {
 		--enable-osmesa \
 		--enable-texture-float \
 		--enable-vdpau \
-		--enable-xa
+		--enable-xa --disable-glx-tls
 	make
 	make DESTDIR=$PKG install
 

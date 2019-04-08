@@ -4,11 +4,13 @@
 # Depends on:  xcb-util xorg-server
 
 name=xf86-video-intel
-version=20180223
+version=master
 release=2
-source=(http://anduin.linuxfromscratch.org/BLFS/$name/$name-$version.tar.xz)
+source=(https://gitlab.freedesktop.org/xorg/driver/xf86-video-intel/-/archive/master/xf86-video-intel-master.tar.gz)
 
 build() {
+	export LDFLAGS="-Wl,-z,lazy"
+
 	cd $name-$version
 	./autogen.sh
 	./configure $BUILDFLAGS \

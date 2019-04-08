@@ -5,7 +5,7 @@
 name=icu
 version=64.1
 release=1
-source=("https://ssl.icu-project.org/files/${name}4c/${version}/${name}4c-${version//./_}-src.tgz")
+source=("https://github.com/unicode-org/icu/releases/download/release-64-1/icu4c-64_1-src.tgz")
 
 build() {
 	cd "$SRC"/icu/source

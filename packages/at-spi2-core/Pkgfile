@@ -10,6 +10,7 @@ source=(http://ftp.gnome.org/pub/gnome/sources/$name/${version%.*}/$name-$versio
 
 build() {
 	cd $name-$version
+	patch -Np0 -i "$STUFF"/a.patch
 	mkdir -p build
 	cd build
 	meson \

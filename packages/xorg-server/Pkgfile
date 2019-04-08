@@ -4,7 +4,7 @@
 # Depends on:  util-linux eudev busybox libdmx libxaw libxcomposite libxcursor libxfont2 libxft libxinerama libxkbfile libxrandr libxres libxtst libxxf86dga font-util mkfontdir mkfontscale xcb-util xcb-util-image xcb-util-keysyms xcb-util-renderutil xcb-util-wm xcb-util-cursor xorg-apps xorg-fonts xkeyboard-config pixman wayland-protocols libepoxy tslib
 
 name=xorg-server
-version=1.20.1
+version=1.20.4
 release=3
 source=(https://www.x.org/pub/individual/xserver/$name-$version.tar.bz2)
 
@@ -12,7 +12,7 @@ build() {
 	export xfontroot=/usr/share/fonts
 	cd $name-$version
 	sed -i '/^#include <asm\/page.h>/d' Xext/xf86bigfont.c
-	./configure CPPFLAGS="-D_GNU_SOURCE -D__gid_t=gid_t -D__uid_t=uid_t" \
+	./configure CFLAGS="-D_GNU_SOURCE -D__gid_t=gid_t -D__uid_t=uid_t $CFLAGS" LDFLAGS="-Wl,-z,lazy" \
 		--prefix=/usr \
 		--libexecdir=/usr/lib \
 		--localstatedir=/var \
