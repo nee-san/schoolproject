@@ -1,0 +1,23 @@
+# Description: Linux man pages
+# URL:         http://man7.org/linux/man-pages/index.html
+# Maintainer:  protonesso, nagakamira at gmail dot com
+
+name=man-pages
+version=5.00
+release=1
+source=("https://www.kernel.org/pub/linux/docs/man-pages/$name-$version.tar.xz")
+BOOTSTRAP=yes
+
+build() {
+	cd "$SRC"/$name-$version
+	make prefix="$PKG/usr" install
+
+	cd "$PKG"/usr/share/man
+
+	rm -f man1/diff.1
+	rm -f man4/mouse.4
+	rm -f man5/attr.5
+	rm -f man4/lirc.4
+	rm -f man7/{keyrings.7,persistent-keyring.7,process-keyring.7,session-keyring.7,thread-keyring.7,user-keyring.7,user-session-keyring.7}
+	rm -f man5/tzfile.5 man8/{tzselect,zdump,zic}.
+}

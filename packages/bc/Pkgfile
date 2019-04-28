@@ -1,9 +1,9 @@
 # Description: An arbitrary precision numeric processing language (calculator)
 # URL:         https://github.com/gavinhoward/bc
-# Maintainer:  nee-san, nagakamira at gmail dot com
+# Maintainer:  protonesso, nagakamira at gmail dot com
 
 name=bc
-version=1.2.3
+version=1.2.8
 release=1
 source=("https://github.com/gavinhoward/bc/releases/download/$version/$name-$version.tar.xz")
 BOOTSTRAP=yes

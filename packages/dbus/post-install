@@ -1,4 +1,4 @@
 #!/bin/sh
-groupadd -g 18 messagebus || true
-useradd -c "D-Bus Message Daemon User" -d /var/run/dbus -u 18 -g messagebus -s /bin/false messagebus || true
+chown root:dbus /usr/lib/dbus-1.0/dbus-daemon-launch-helper
+chmod 4750 /usr/lib/dbus-1.0/dbus-daemon-launch-helper
 dbus-uuidgen --ensure

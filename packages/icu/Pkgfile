@@ -1,11 +1,12 @@
 # Description: International Components for Unicode library
 # URL:         http://www.icu-project.org/
-# Maintainer:  nee-san, nagakamira at gmail dot com
+# Maintainer:  protonesso, nagakamira at gmail dot com
+# Depends on:  python
 
 name=icu
-version=64.1
+version=64.2
 release=1
-source=("https://github.com/unicode-org/icu/releases/download/release-64-1/icu4c-64_1-src.tgz")
+source=("https://ssl.icu-project.org/files/${name}4c/${version}/${name}4c-${version//./_}-src.tgz")
 
 build() {
 	cd "$SRC"/icu/source
@@ -15,5 +16,5 @@ build() {
 		--sysconfdir=/etc \
 		--mandir=/usr/share/man
 	make
-	make DESTDIR="$PKG" install
+	make -j1 DESTDIR="$PKG" install
 }

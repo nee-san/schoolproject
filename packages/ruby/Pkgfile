@@ -1,10 +1,10 @@
 # Description: An object-oriented language for quick and easy programming
 # URL:         http://www.ruby-lang.org/en/
-# Maintainer:  nee-san, nagakamira at gmail dot com
+# Maintainer:  protonesso, nagakamira at gmail dot com
 # Depends on:  zlib gmp gdbm db readline libressl libffi yaml
 
 name=ruby
-version=2.6.2
+version=2.6.3
 release=1
 source=("https://cache.ruby-lang.org/pub/ruby/${version:0:3}/ruby-${version}.tar.xz")
 NO_EMPTY_DIRS=1

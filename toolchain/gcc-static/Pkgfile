@@ -18,14 +18,17 @@ build() {
 			x86_64)
 				export GCCOPTS="--with-arch=x86-64 --with-tune=generic"
 				;;
-			i686)
-				export GCCOPTS="--with-arch=i686 --with-tune=generic"
+			i586)
+				export GCCOPTS="--with-arch=i586 --with-tune=generic"
 				;;
 			aarch64)
 				export GCCOPTS="--with-arch=armv8-a --enable-fix-cortex-a53-835769 --enable-fix-cortex-a53-843419"
 				;;
 			armv7l)
 				export GCCOPTS="--with-arch=armv7-a --with-float=hard --with-fpu=vfpv3-d16"
+				;;
+			armv6l)
+				export GCCOPTS="--with-arch=armv6 --with-float=hard --with-fpu=vfp"
 				;;
 			armv5tel)
 				export GCCOPTS="--with-arch=armv5te --with-float=soft"
@@ -58,7 +61,7 @@ build() {
 				export GCCOPTS="--with-arch=rv32imafdc"
 				;;
 			*)
-				echo "Architecture is not set or is not supported by januslinux"
+				echo "Architecture is not set or is not supported by Ataraxia Linux"
 				exit 1
 		esac
 	fi
@@ -130,8 +133,8 @@ build() {
 		--build=$XHOST \
 		--host=$XHOST \
 		--target=$XTARGET $GCCOPTS $HASHCONFIG \
-		--with-pkgversion="januslinux edition $version for $BARCH" \
-		--with-bugurl="https://github.com/JanusLinux/janus/issues" \
+		--with-pkgversion="Ataraxia Linux edition $version for $BARCH" \
+		--with-bugurl="https://github.com/ataraxialinux/ataraxia/issues" \
 		--with-sysroot="$ROOTFS" \
 		--with-local-prefix="$ROOTFS" \
 		--with-native-system-header-dir="$ROOTFS/usr/include" \

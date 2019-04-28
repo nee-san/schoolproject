@@ -1,0 +1,18 @@
+# Description: Utility for controlling network drivers and hardware
+# URL:         https://www.kernel.org/pub/software/network/ethtool/
+# Maintainer:  protonesso, nagakamira at gmail dot com
+
+name=ethtool
+version=5.0
+release=1
+source=("https://www.kernel.org/pub/software/network/$name/$name-$version.tar.xz")
+
+build() {
+	cd "$SRC"/$name-$version
+	./configure $BUILDFLAGS \
+		--prefix=/usr \
+		--sbindir=/usr/bin \
+		--mandir=/usr/share/man
+	make
+	make DESTDIR="$PKG" install
+}

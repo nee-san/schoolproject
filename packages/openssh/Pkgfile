@@ -1,10 +1,10 @@
 # Description: Premier connectivity tool for remote login with the SSH protocol
 # URL:         https://www.openssh.com/portable.html
-# Maintainer:  nee-san, nagakamira at gmail dot com
+# Maintainer:  protonesso, nagakamira at gmail dot com
 # Depends on:  zlib libressl libedit
 
 name=openssh
-version=7.9p1
+version=8.0p1
 release=1
 source=("https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz")
 BOOTSTRAP=yes

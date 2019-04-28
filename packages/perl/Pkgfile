@@ -1,14 +1,14 @@
 # Description: A highly capable, feature-rich programming language
 # URL:         http://www.perl.org/
-# Maintainer:  nee-san, nagakamira at gmail dot com
+# Maintainer:  protonesso, nagakamira at gmail dot com
 # Depends on:  gdbm db
 
 name=perl
-version=5.28.1
-crossver=1.2.1
+version=5.28.2
+crossver=85d276431e6d62042f0e561abcc61f445adde659
 release=1
 source=("https://www.cpan.org/src/5.0/$name-$version.tar.xz"
-	"https://github.com/arsv/perl-cross/releases/download/$crossver/perl-cross-$crossver.tar.gz")
+	"https://github.com/arsv/perl-cross/archive/$crossver.tar.gz")
 BOOTSTRAP=yes
 
 build() {
@@ -18,14 +18,18 @@ build() {
 	cd $name-$version
 	./configure $PERLFLAGS \
 		--prefix=/usr \
+		-Dprivlib=/usr/share/perl5/core_perl \
+		-Darchlib=/usr/lib/perl5/core_perl \
 		-Dvendorprefix=/usr \
-		-Dprivlib=/usr/lib/perl5/${version%.*} \
-		-Dsitelib=/usr/lib/perl5/site_perl/${version%.*} \
-		-Dvendorlib=/usr/lib/perl5/site_perl/${version%.*} \
+		-Dvendorlib=/usr/share/perl5/vendor_perl \
+		-Dvendorarch=/usr/lib/perl5/vendor_perl \
+		-Dsiteprefix=/usr/local \
+		-Dsitelib=/usr/local/share/perl5/site_perl \
+		-Dsitearch=/usr/local/lib/perl5/site_perl \
 		-Dman1dir=/usr/share/man/man1 \
 		-Dman3dir=/usr/share/man/man3 \
 		-Dpager="/usr/bin/less -isR" \
-		-Dcf_by='januslinux' \
+		-Dcf_by='Ataraxia Linux' \
 		-Dcccdlflags='-fPIC' \
 		-Dcccdlflags='-fPIC' \
 		-Dccdlflags='-rdynamic' \

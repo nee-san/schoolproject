@@ -1,10 +1,10 @@
 # Description: Vi Improved, a highly configurable, improved version of the vi text editor
 # URL:         https://www.vim.org/
-# Maintainer:  nee-san, nagakamira at gmail dot com
+# Maintainer:  protonesso, nagakamira at gmail dot com
 # Depends on:  ncurses libelf
 
 name=vim-tiny
-version=8.1.1115
+version=8.1.1209
 release=1
 source=("https://github.com/vim/vim/archive/v$version.tar.gz")
 
@@ -14,7 +14,7 @@ build() {
 	./configure $BUILDFLAGS \
 		--prefix=/usr \
 		--localstatedir=/var/lib/vim \
-		--with-compiledby='januslinux' \
+		--with-compiledby='Ataraxia Linux' \
 		--with-features=tiny \
 		--with-tlib=ncurses \
 		--without-x \

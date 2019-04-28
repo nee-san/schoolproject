@@ -1,10 +1,10 @@
 # Description: Miscellaneous system utilities for Linux
 # URL:         http://git.kernel.org/cgit/utils/util-linux/util-linux.git
-# Maintainer:  nee-san, nagakamira at gmail dot com
+# Maintainer:  protonesso, nagakamira at gmail dot com
 # Depends on:  zlib readline libcap-ng
 
 name=util-linux
-version=2.33.1
+version=2.33.2
 case $version in
 	*.*.*) _v=${version%.*};;
 	*.*) _v=$version;;
@@ -15,9 +15,6 @@ BOOTSTRAP=yes
 
 build() {
 	cd "$SRC"/$name-$version
-	patch -Np1 -i "$STUFF"/util-linux/70c364b4db6530ada12f7103b5c5d8ceb777307f.patch
-
-	NOCONFIGURE=1 ./autogen.sh
 	ADJTIME_PATH=/var/lib/hwclock/adjtime \
 	./configure $BUILDFLAGS \
 		--prefix=/usr \
@@ -61,4 +58,6 @@ build() {
 	install -Dm0755 "$STUFF"/runit-svc/uuid-log "$PKG"/etc/service/uuid/log/run
 
 	mkdir -p "$PKG"/var/log/uuid
+
+	install -Dm644 "$STUFF"/util-linux/rfkill.rules "$PKG"/usr/lib/udev/rules.d/60-rfkill.rules
 }

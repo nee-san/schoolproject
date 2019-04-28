@@ -1,11 +1,11 @@
 # Description: Header files for Linux kernel
 # URL:         https://www.kernel.org/
-# Maintainer:  nee-san, nagakamira at gmail dot com
+# Maintainer:  protonesso, nagakamira at gmail dot com
 
 name=linux-api-headers
-version=5.0.7
+version=4.19.37
 release=1
-source=("https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-$version.tar.xz")
+source=("https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-$version.tar.xz")
 BOOTSTRAP=yes
 
 build() {
@@ -14,13 +14,13 @@ build() {
 		x86_64)
 			export XKARCH="x86_64"
 			;;
-		i686)
+		i586)
 			export XKARCH="i386"
 			;;
 		aarch64)
 			export XKARCH="arm64"
 			;;
-		armv7l|armv5tel)
+		armv7l|armv6l|armv5tel)
 			export XKARCH="arm"
 			;;
 		mips64|mips64el|mips|mipsel)
@@ -33,7 +33,7 @@ build() {
 			export XKARCH="riscv"
 			;;
 		*)
-			echo "Architecture is not set or is not supported by januslinux"
+			echo "Architecture is not set or is not supported by Ataraxia Linux"
 			exit 1
 	esac
 

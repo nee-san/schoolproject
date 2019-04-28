@@ -1,10 +1,10 @@
 # Description: A set of utilities to manage software packages
-# URL:         https://januslinux.github.io/
-# Maintainer:  nee-san, nagakamira at gmail dot com
+# URL:         https://ataraxialinux.github.io/
+# Maintainer:  protonesso, nagakamira at gmail dot com
 # Depends on:  libarchive
 
 name=pkgutils
-version=5.43.1
+version=5.43.2
 release=2
 source=("https://github.com/nee-san/pkgutils/archive/$version.tar.gz")
 BOOTSTRAP=yes

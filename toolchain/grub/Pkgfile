@@ -32,14 +32,14 @@ build() {
 	export CXXFLAGS="$CFLAGS"
 
 	case $BARCH in
-		x86_64|i686)
+		x86_64|i586)
 			FLAVOR="efi pc"
 			;;
 		ppc64le|ppc64|ppc)
 			FLAVOR="ieee1275"
 			;;
 		*)
-			echo "Architecture is not set or is not supported by januslinux"
+			echo "Architecture is not set or is not supported by Ataraxia Linux"
 			exit 1
 	esac
 
@@ -55,7 +55,7 @@ build() {
 	patch -Np1 -i "$STUFF"/grub/0012-fix-gcc-no-pie-specs.patch
 	sed 's|/usr/share/fonts/dejavu|/usr/share/fonts/dejavu /usr/share/fonts/TTF|g' -i configure.ac
 	sed 's| ro | rw |g' -i util/grub.d/10_linux.in
-	sed 's|GNU/Linux||' -i util/grub.d/10_linux.in
+	sed 's|GNU/Linux| |' -i util/grub.d/10_linux.in
 
 	./autogen.sh
 

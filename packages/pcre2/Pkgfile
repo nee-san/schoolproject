@@ -1,11 +1,11 @@
 # Description: A library that implements Perl 5-style regular expressions. 2nd version
 # URL:         http://www.pcre.org/
-# Maintainer:  nee-san, nagakamira at gmail dot com
+# Maintainer:  protonesso, nagakamira at gmail dot com
 # Depends on:  zlib readline bzip2
 
 name=pcre2
-version=10.32
-release=2
+version=10.33
+release=1
 source=("https://ftp.pcre.org/pub/pcre/$name-$version.tar.bz2")
 
 build() {

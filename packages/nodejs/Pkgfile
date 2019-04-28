@@ -1,10 +1,10 @@
 # Description: Evented I/O for V8 javascript
 # URL:         http://nodejs.org/
-# Maintainer:  nee-san, nagakamira at gmail dot com
-# Depends on:  procps-ng python2 zlib libressl nghttp2 icu libuv
+# Maintainer:  protonesso, nagakamira at gmail dot com
+# Depends on:  python2 zlib nghttp2 icu libuv
 
 name=nodejs
-version=11.13.0
+version=12.0.0
 release=1
 source=("https://nodejs.org/dist/v$version/node-v$version.tar.gz")
 
@@ -19,11 +19,10 @@ build() {
 	./configure $NODEARCH \
 		--prefix=/usr \
 		--with-intl=system-icu \
+		--without-snapshot \
 		--shared-cares \
-		--shared-http-parser \
 		--shared-libuv \
 		--shared-nghttp2 \
-		--shared-openssl \
 		--shared-zlib
 	make
 	make DESTDIR="$PKG" install
