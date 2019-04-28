@@ -4,7 +4,7 @@
 # Depends on:  freetype libx11 libxft libxinerama st dmenu
 
 name=dwm
-version=6.1
+version=6.2
 release=1
 source=(http://dl.suckless.org/$name/$name-$version.tar.gz)
 

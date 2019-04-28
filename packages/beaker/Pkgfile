@@ -4,7 +4,7 @@
 # Depends on:  python2 python funcsigs
 
 name=beaker
-version=1.10.0
+version=1.10.1
 release=1
 source=(https://github.com/bbangert/beaker/archive/$version.tar.gz)
 

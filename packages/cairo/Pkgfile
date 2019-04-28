@@ -4,7 +4,7 @@
 # Depends on:  libpng pixman fontconfig glib libxext libxrender xcb-util
 
 name=cairo
-version=1.15.12
+version=1.17.2
 release=1
 source=(https://cairographics.org/snapshots/cairo-$version.tar.xz)
 
